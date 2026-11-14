@@ -1,0 +1,5 @@
+# 站点构建产物与本地缓存
+node_modules/
+.npm-cache/
+.vitepress/cache/
+.vitepress/dist/

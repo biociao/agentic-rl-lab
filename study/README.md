@@ -1,57 +1,82 @@
-# 学习笔记 · Agentic RL Lab
+# study/ · 学习笔记站点
 
-本目录是我对 [datawhalechina/agentic-rl-lab](https://github.com/datawhalechina/agentic-rl-lab) 的**私人学习笔记**，
-写在 `study` 分支上，**只推送到 fork 仓库**（`biociao/agentic-rl-lab`），不向原仓库提 PR。
-原仓库内容（`experiments/`、`README.md` 等）保持上游原样，笔记只放在 `study/` 下，便于随时 rebase。
+这里是 `study` 分支上的个人学习笔记，同时是一个独立的 [VitePress](https://vitepress.dev/) 站点，
+发布在 **<https://biociao.github.io/agentic-rl-lab/>**——GitHub Pages 的免费域名，与个人博客
+（`biochao.cc`，跑在阿里云 ECS 上）是两个完全独立的主机，互不影响，也不需要额外买域名。
 
-- 上游：`upstream` → `datawhalechina/agentic-rl-lab`（push 已禁用为 `no_push`）
-- 我的 fork：`fork` → `biociao/agentic-rl-lab`（`study` 分支跟踪 `fork/study`）
+> 为什么不用 `blog.biochao.cc` 那套？那是旧账号 `scelta.github.io` 仓库里留下的 CNAME，
+> 该域名早已 NXDOMAIN，属废弃配置。而 `biociao.github.io` 下**没有**用户站点仓库，
+> 所以项目站点不会被重定向到任何自定义域，用默认路径最省事。
 
-## 阅读进度
+## 目录结构
 
-按原仓库约定的阅读顺序（[experiments/README.md](../experiments/README.md)）。
-
-| # | 章节 | 笔记 | 状态 |
-| --- | --- | --- | --- |
-| 00 | 环境配置与基础概念 | [00-getting-started.md](./00-getting-started.md) | ✅ 已读 |
-| 01 | Loss Functions | — | ⏳ 待读（建议在读 GRPO 之前） |
-| 02 | GRPO | — | ⏳ |
-| 03 | Vision GRPO | — | ⏳ |
-| 04 | PyTrio-Jev | — | ⏳ |
-| 05 | General OPD | — | ⏳ |
-| 06 | Medical OPD | — | ⏳ |
-| 07 | DAPO | — | ⏳ |
-| 08 | GSPO | — | ⏳ |
-| 09 | OPSD | — | ⏳ |
-| 10 | AgentOPSD | — | ⏳ |
-| 11 | Search-R1 | — | ⏳ |
-| 12 | ReTool | — | ⏳ |
-| 13 | ALFWorld | — | ⏳ |
-| 14 | TEMPO | — | ⏳ |
-| 15 | Spec-o3 | — | ⏳ |
-| 16 | Tournament-GRPO | — | ⏳ |
-
-## 笔记约定
-
-每篇笔记固定四段，避免抄原文，只写"我的理解"：
-
-1. **一句话结论**：这章解决什么问题、核心机制是什么。
-2. **机制拆解**：关键公式/数据结构/代码路径，用自己的话讲，标出对应文件与行号。
-3. **动手记录**：实际跑的命令、参数、SwanLab 链接、异常与修复。
-4. **待解问题**：没想通的地方，留到下次。
-
-## 常用命令
-
-```bash
-# 同步上游（只拉不推）
-git fetch upstream && git rebase upstream/main
-
-# 笔记提交后推送到 fork（study 分支已设 upstream）
-git push fork study
+```
+study/
+├── index.md                 # 站点首页
+├── notes/                   # 笔记正文
+│   ├── index.md             #   学习路线与进度表
+│   └── 00-getting-started.md
+├── .vitepress/config.mts    # 站点配置（base、导航、侧边栏、搜索）
+├── public/                  # 原样拷贝到产物根目录
+│   └── favicon.svg
+└── package.json             # 构建脚本与依赖
 ```
 
-## 待办
+笔记是普通 Markdown：在 `notes/` 下新建文件，把链接加进 `notes/index.md` 的进度表和
+`.vitepress/config.mts` 的 `sidebar` 即可。
 
-- [ ] `uv sync`，验证 `pytrio 0.2.9 / swanlab 0.10.4`
-- [ ] 注册并登录 PyTRIO（`uv run trio login`）、SwanLab（`uv run swanlab login && verify`）
-- [ ] 跑通第一次训练：`experiments/grpo/01-demo-sync.py`（10 步小参数）
+## 本地预览
+
+```bash
+cd study
+npm install            # 首次
+npm run docs:dev       # http://localhost:5173/agentic-rl-lab/
+npm run docs:build     # 产物在 .vitepress/dist
+npm run docs:preview
+```
+
+> 本机 `~/.npm` 属主是 root，直接 `npm install` 会 EACCES。把缓存指到仓库内即可：
+> `npm_config_cache="$PWD/../.npm-cache" npm install`。
+
+## 发布
+
+推送到 `study` 分支即触发 `.github/workflows/study-site.yml`：构建 → 上传 artifact → 部署 Pages。
+站点地址：`https://biociao.github.io/agentic-rl-lab/`
+
+首次启用（只需一次）：
+
+1. **Pages**：仓库 Settings → Pages → Source 选 **GitHub Actions**。
+2. **Actions**：fork 默认不跑 workflow。Settings → Actions → General → 允许本仓库运行 workflow
+   （或在 Actions 页点 “I understand my workflows, go ahead and enable them”）。
+3. 之后每次 `git push fork study` 自动上线。
+
+## 换成独立域名（可选）
+
+想要 `arl.biochao.cc` 这种自己的域名，三步：
+
+1. **DNS**：在 `biochao.cc` 的解析（阿里云 hichina）加
+   `CNAME  arl  →  biociao.github.io`（注意不要带路径和后缀点）。
+2. **配置**：`.vitepress/config.mts` 里 `BASE` 改回 `'/'`、`SITE` 改为 `https://arl.biochao.cc`；
+   并新建 `public/CNAME`，内容一行 `arl.biochao.cc`。
+3. **Pages 设置**：Custom domain 填 `arl.biochao.cc`，证书签发后勾 **Enforce HTTPS**。
+
+⚠️ `public/CNAME` 一旦存在，GitHub Pages 就只认那个自定义域，`biociao.github.io/agentic-rl-lab/`
+会 301 跳走——所以不想用自定义域时**不要**留这个文件。
+
+## 兜底：不用 Actions 手动发布
+
+```bash
+cd study
+npm run docs:build
+npx gh-pages -d .vitepress/dist -b gh-pages \
+    -r https://github.com/biociao/agentic-rl-lab.git
+```
+
+然后 Settings → Pages → Source 选 **Deploy from a branch** → `gh-pages` / `root`。
+（`base` 仍是 `/agentic-rl-lab/`，不用改。）
+
+## 与上游的关系
+
+- 本分支基于 `upstream/main`（`datawhalechina/agentic-rl-lab`）的副本；
+- `upstream` remote 的 push URL 已设为 `no_push`，防止误推；
+- 收上游更新：`git fetch upstream && git rebase upstream/main`。笔记只在 `study/` 目录，冲突面很小。
