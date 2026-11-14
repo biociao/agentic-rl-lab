@@ -3,3 +3,6 @@ node_modules/
 .npm-cache/
 .vitepress/cache/
 .vitepress/dist/
+
+# Hexo 同步的临时产物
+.hexo-out/
