@@ -241,16 +241,7 @@ def build():
     d.text(420, 530, "先用服务文档定位接口，再用原始论文核对目标函数、假设与实验条件。", "sub", "middle")
     d.save()
 
-    d = Diagram("16-open-questions", "待探索问题：把疑问变成可验证的检查", "这些是下一步核查路径，不是已经完成的实验或结论。", 663)
-    rows = [(116, "计费与预算", "查计费文档，测单步 token 用量与费用"), (215, "二阶信息能否回传？", "查自定义 loss 的梯度与高阶导数接口边界"), (314, "K = 4 时要不要除 std？", "固定样本与 seed，对照梯度尺度和波动"), (413, "为何手写 CISPO？", "对照内置接口、教学代码与梯度实现"), (512, "多轮 GSPO 的序列边界？", "对照实现，标出 completion / episode 与 mask")]
-    for y, question, check in rows:
-        d.box(28, y, 304, 78, question, color=PURPLE)
-        d.box(380, y, 432, 78, check, color=CYAN)
-        d.arrow([(332, y+39), (380, y+39)])
-    d.text(420, 632, "输出应是证据或对照结果；在验证前继续保留为问题。", "sub", "middle")
-    d.save()
-
 
 if __name__ == "__main__":
     build()
-    print(f"Rebuilt 16 SVG diagrams in {OUT}")
+    print(f"Rebuilt 15 SVG diagrams in {OUT}")
