@@ -23,6 +23,8 @@ const COLUMN = 'Agentic-RL'      // 分类名，决定 /categories/Agentic-RL/
 const URL_ROOT = 'agentic-rl'    // permalink 前缀
 const AUTHOR = 'Ciao'
 const DEFAULT_TAGS = ['Agentic RL']
+const SOURCE_REPO = 'biociao/agentic-rl-lab'  // 回链用的仓库（发布面 → 单一事实来源）
+const SOURCE_BRANCH = 'study'
 
 // ---------- 参数 ----------
 const argv = process.argv.slice(2)
@@ -82,6 +84,23 @@ const rewriteLinks = (body) =>
 /** 去掉正文里的首个 H1（标题已进 frontmatter），避免页内重复 */
 const stripFirstH1 = (body) => body.replace(/^#\s+.+\n+/, '')
 
+/**
+ * 文末回链：博客只是发布面，指向仓库里的原文与提交历史。
+ * 用引用块 + 分隔线，避免和正文混在一起。
+ */
+const sourceNote = (file) => {
+  const path = `study/notes/${file}`
+  const url = `https://github.com/${SOURCE_REPO}/blob/${SOURCE_BRANCH}/${path}`
+  const history = `https://github.com/${SOURCE_REPO}/commits/${SOURCE_BRANCH}/${path}`
+  return [
+    '---',
+    '',
+    `> 本文同步自我的学习仓库 [${SOURCE_REPO}](${url})（\`${SOURCE_BRANCH}\` 分支 · \`${path}\`）。`,
+    `> 博客为发布面，内容与修订以仓库为准：[源文件](${url}) · [修订历史](${history})。`,
+    '',
+  ].join('\n')
+}
+
 // ---------- 主流程 ----------
 const files = readdirSync(NOTES_DIR)
   .filter((f) => f.endsWith('.md'))
@@ -115,7 +134,7 @@ for (const file of files) {
 
   const tags = [...DEFAULT_TAGS, isIndex ? 'Roadmap' : 'Notes']
 
-  const body = rewriteLinks(stripFirstH1(body0)).trim() + '\n'
+  const body = rewriteLinks(stripFirstH1(body0)).trim() + '\n\n' + sourceNote(file)
 
   const fm = [
     '---',
