@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="520" viewBox="0 0 840 520" role="img" aria-labelledby="title desc">
+<title id="title">PT、SFT、RL：学习信号从哪里来？</title><desc id="desc">这里对照的是本课的典型设置；RL 也可以使用过程奖励。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="520" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="518" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">PT、SFT、RL：学习信号从哪里来？</text>
+<text x="48" y="81" class="sub" text-anchor="start">这里对照的是本课的典型设置；RL 也可以使用过程奖励。</text>
+<rect x="28" y="120" width="244" height="247" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="46" y="151" class="head" text-anchor="start">PT · 预训练</text>
+<text x="46" y="181" class="body" text-anchor="start">输入：连续文本</text>
+<text x="46" y="208" class="body" text-anchor="start">目标：下一个 token</text>
+<text x="46" y="235" class="body" text-anchor="start"></text>
+<text x="46" y="262" class="body" text-anchor="start">[词₁] → 词₂</text>
+<text x="46" y="289" class="body" text-anchor="start">[词₁ 词₂] → 词₃</text>
+<text x="46" y="316" class="body" text-anchor="start">每个位置有预测目标</text>
+<rect x="298" y="120" width="244" height="247" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="316" y="151" class="head" text-anchor="start">SFT · 监督微调</text>
+<text x="316" y="181" class="body" text-anchor="start">输入：问题 + 示范答案</text>
+<text x="316" y="208" class="body" text-anchor="start">目标：示范答案 token</text>
+<text x="316" y="235" class="body" text-anchor="start"></text>
+<text x="316" y="262" class="body" text-anchor="start">问题 → 示范答案</text>
+<text x="316" y="289" class="body" text-anchor="start">答₁ · 答₂ · 答₃</text>
+<text x="316" y="316" class="body" text-anchor="start">逐 token 对照示范</text>
+<rect x="568" y="120" width="244" height="247" rx="12" fill="#fff5e3" stroke="#99600c" stroke-width="1.5"/>
+<text x="586" y="151" class="head" text-anchor="start">RL · 强化学习</text>
+<text x="586" y="181" class="body" text-anchor="start">输入：问题</text>
+<text x="586" y="208" class="body" text-anchor="start">目标：提高任务回报</text>
+<text x="586" y="235" class="body" text-anchor="start"></text>
+<text x="586" y="262" class="body" text-anchor="start">问题 → 自己生成回答</text>
+<text x="586" y="289" class="body" text-anchor="start">回答 → reward</text>
+<text x="586" y="316" class="body" text-anchor="start">再构造更新信号</text>
+<path d="M690,367 L690,406 L420,406" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="425" width="784" height="74" rx="10" fill="#fff5e3"/>
+<text x="44" y="453" class="sub" text-anchor="start">本课结果奖励的难点：自己采样，并把回答级反馈分配到模型的动作。</text>
+<text x="44" y="478" class="sub" text-anchor="start">这引出了 rollout、advantage 与 credit assignment。</text>
+</svg>

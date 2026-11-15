@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="530" viewBox="0 0 840 530" role="img" aria-labelledby="title desc">
+<title id="title">Reward：真实目标如何变成可计算的分数？</title><desc id="desc">奖励是目标的代理；拿到高分，需要再核对是否真的完成任务。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="530" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="528" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">Reward：真实目标如何变成可计算的分数？</text>
+<text x="48" y="81" class="sub" text-anchor="start">奖励是目标的代理；拿到高分，需要再核对是否真的完成任务。</text>
+<rect x="222" y="117" width="396" height="91" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="240" y="148" class="head" text-anchor="start">真实任务目标</text>
+<text x="240" y="178" class="body" text-anchor="start">答对题 / 正确使用工具 / 完成环境任务</text>
+<rect x="28" y="267" width="248" height="118" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="46" y="298" class="head" text-anchor="start">可验证答案</text>
+<text x="46" y="328" class="body" text-anchor="start">最终答案是否匹配</text>
+<text x="46" y="355" class="body" text-anchor="start">例：数学题答案校验</text>
+<path d="M420,208 L420,235 L152,235 L152,267" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="296" y="267" width="248" height="118" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="314" y="298" class="head" text-anchor="start">过程 / 格式</text>
+<text x="314" y="328" class="body" text-anchor="start">结构、步骤或工具行为</text>
+<text x="314" y="355" class="body" text-anchor="start">例：格式分与搜索行为分</text>
+<path d="M420,208 L420,235 L420,235 L420,267" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="564" y="267" width="248" height="118" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="582" y="298" class="head" text-anchor="start">环境判定</text>
+<text x="582" y="328" class="body" text-anchor="start">任务状态是否达成</text>
+<text x="582" y="355" class="body" text-anchor="start">例：ALFWorld 完成任务</text>
+<path d="M420,208 L420,235 L688,235 L688,267" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="420" width="784" height="74" rx="10" fill="#fff5e3"/>
+<text x="44" y="448" class="sub" text-anchor="start">代理与目标出现偏差 → 模型可能学会利用评分规则 → reward hacking。</text>
+<text x="44" y="473" class="sub" text-anchor="start">核对：分数升高时，正确率、行为质量和任务完成率是否同步改善？</text>
+</svg>

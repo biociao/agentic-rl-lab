@@ -71,8 +71,10 @@ menu:
 - **渲染器是 `hexo-renderer-marked`**：标准 Markdown + GFM 表格可用；VitePress 专属语法
   （`::: tip` 容器、`layout: home` 首页）不会被渲染，所以 `study/index.md` 这个首页**不参与同步**，
   专栏入口直接用分类页。
-- **图片**：笔记若有本地图片，放在博客的 `source/images/agentic-rl/` 下并在笔记里用同一路径引用；
-  博客装了 `hexo-image-link`，相对路径会被重写，跨仓库引用容易断，建议统一走仓库 `study/` 内的图并同步过去。
+- **图片**：放在仓库 `study/notes/assets/<章节>/`，正文使用 `![说明](./assets/<章节>/文件.svg)`。
+  同步脚本将引用的 SVG、PNG、JPEG、WebP 复制到博客 `source/images/agentic-rl/<章节>/`，
+  并把图片链接改为 `/images/agentic-rl/<章节>/文件.svg`；`--dry-run` 只检查来源并报告，不写文件。
+  `--dest` 应指向 `source/_posts/agentic-rl/`，图片目录按该结构定位，已有的其他图片不会被清空。
 - **Hexo 的 `layout: article`** 在现有 7 篇文章里出现过但没有对应模板文件，属无害的历史遗留；
   新生成的文章不带 `layout` 字段，走默认 post 模板。
 - **同步是破坏性的**：`sync.mjs` 会先清空目标目录，所以目标目录必须是独占的

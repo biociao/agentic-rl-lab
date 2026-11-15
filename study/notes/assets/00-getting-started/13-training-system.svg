@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="713" viewBox="0 0 840 713" role="img" aria-labelledby="title desc">
+<title id="title">一次训练 step：本地与云端如何接力？</title><desc id="desc">数字对应正文六个动作；虚线是更新后的下一步循环。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="713" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="711" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">一次训练 step：本地与云端如何接力？</text>
+<text x="48" y="81" class="sub" text-anchor="start">数字对应正文六个动作；虚线是更新后的下一步循环。</text>
+<text x="220" y="125" class="head" text-anchor="middle">本地 CPU · 编排与评价</text>
+<text x="620" y="125" class="head" text-anchor="middle">云端 GPU · 模型计算</text>
+<rect x="28" y="153" width="366" height="104" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="184" class="head" text-anchor="start">① 取 batch、拼 prompt</text>
+<text x="46" y="214" class="body" text-anchor="start">tokenizer + chat template</text>
+<rect x="446" y="153" width="366" height="104" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="464" y="184" class="head" text-anchor="start">② 同步当前权重并采样</text>
+<text x="464" y="214" class="body" text-anchor="start">sampler → K 条回答 + logprobs</text>
+<path d="M394,205 L446,205" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="314" width="366" height="131" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="345" class="head" text-anchor="start">③ 评价并打包 Datum</text>
+<text x="46" y="375" class="body" text-anchor="start">reward → 组内 advantage</text>
+<text x="46" y="402" class="body" text-anchor="start">选择参与训练的 token</text>
+<path d="M629,257 L629,282 L211,282 L211,314" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="420" y="276" class="small" text-anchor="middle">返回生成结果</text>
+<rect x="446" y="314" width="366" height="131" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="464" y="345" class="head" text-anchor="start">④ forward / backward</text>
+<text x="464" y="375" class="body" text-anchor="start">内置 loss 在云端计算</text>
+<text x="464" y="402" class="body" text-anchor="start">自定义 loss 经本地求导后回传</text>
+<path d="M394,379 L446,379" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="446" y="502" width="366" height="104" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="464" y="533" class="head" text-anchor="start">⑤ optim_step</text>
+<text x="464" y="563" class="body" text-anchor="start">更新 LoRA 参数</text>
+<path d="M629,445 L629,502" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="502" width="366" height="104" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="533" class="head" text-anchor="start">⑥ 记录指标</text>
+<text x="46" y="563" class="body" text-anchor="start">SwanLab → 比较下一步的变化</text>
+<path d="M446,554 L394,554" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M28,554 L14,554 L14,205 L28,205" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<rect x="28" y="632" width="784" height="49" rx="10" fill="#fff5e3"/>
+<text x="44" y="660" class="sub" text-anchor="start">规模约束：网络往返延迟 + K × 回答长度的采样成本 + 版本与配置可追溯性。</text>
+</svg>

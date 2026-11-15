@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="546" viewBox="0 0 840 546" role="img" aria-labelledby="title desc">
+<title id="title">适用边界：从能跑通到能比较</title><desc id="desc">区分教学实验能说明什么，以及推广结论前还需要检查什么。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="546" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="544" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">适用边界：从能跑通到能比较</text>
+<text x="48" y="81" class="sub" text-anchor="start">区分教学实验能说明什么，以及推广结论前还需要检查什么。</text>
+<rect x="28" y="120" width="340" height="101" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="151" class="head" text-anchor="start">本地无需 GPU</text>
+<text x="46" y="181" class="body" text-anchor="start">算力由远程服务提供</text>
+<rect x="464" y="120" width="348" height="101" rx="12" fill="#fff5e3" stroke="#99600c" stroke-width="1.5"/>
+<text x="482" y="151" class="head" text-anchor="start">仍需核算成本</text>
+<text x="482" y="181" class="body" text-anchor="start">采样、训练、网络与配额</text>
+<path d="M368,170 L464,170" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="416" y="157" class="small" text-anchor="middle">边界</text>
+<rect x="28" y="251" width="340" height="101" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="282" class="head" text-anchor="start">训练 LoRA 适配器</text>
+<text x="46" y="312" class="body" text-anchor="start">降低更新和权重同步的负担</text>
+<rect x="464" y="251" width="348" height="101" rx="12" fill="#fff5e3" stroke="#99600c" stroke-width="1.5"/>
+<text x="482" y="282" class="head" text-anchor="start">仍有表达能力假设</text>
+<text x="482" y="312" class="body" text-anchor="start">全参训练问题需要另行评估</text>
+<path d="M368,301 L464,301" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="416" y="288" class="small" text-anchor="middle">边界</text>
+<rect x="28" y="382" width="340" height="101" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="413" class="head" text-anchor="start">同栈内做算法对照</text>
+<text x="46" y="443" class="body" text-anchor="start">固定模型、数据与预算口径</text>
+<rect x="464" y="382" width="348" height="101" rx="12" fill="#fff5e3" stroke="#99600c" stroke-width="1.5"/>
+<text x="482" y="413" class="head" text-anchor="start">跨平台需重新核对</text>
+<text x="482" y="443" class="body" text-anchor="start">实现差异、吞吐与评测设置</text>
+<path d="M368,432 L464,432" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="416" y="419" class="small" text-anchor="middle">边界</text>
+</svg>

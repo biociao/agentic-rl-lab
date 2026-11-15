@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="516" viewBox="0 0 840 516" role="img" aria-labelledby="title desc">
+<title id="title">RL 监控：reward 上升之后，还要看什么？</title><desc id="desc">下图是诊断逻辑示意，不代表任何真实实验结果。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="516" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="514" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">RL 监控：reward 上升之后，还要看什么？</text>
+<text x="48" y="81" class="sub" text-anchor="start">下图是诊断逻辑示意，不代表任何真实实验结果。</text>
+<rect x="245" y="116" width="350" height="88" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="263" y="147" class="head" text-anchor="start">观察到 reward 均值上升</text>
+<text x="263" y="177" class="body" text-anchor="start">先保留结论，继续联合检查</text>
+<rect x="28" y="266" width="248" height="128" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="46" y="297" class="head" text-anchor="start">回答长度</text>
+<text x="46" y="327" class="body" text-anchor="start">是否不断变长？</text>
+<text x="46" y="354" class="body" text-anchor="start">是否频繁触及上限？</text>
+<path d="M420,204 L420,231 L152,231 L152,266" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="296" y="266" width="248" height="128" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="314" y="297" class="head" text-anchor="start">有效学习信号</text>
+<text x="314" y="327" class="body" text-anchor="start">degenerate_fraction</text>
+<text x="314" y="354" class="body" text-anchor="start">组内是否还有差异？</text>
+<path d="M420,204 L420,231 L420,231 L420,266" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="564" y="266" width="248" height="128" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="582" y="297" class="head" text-anchor="start">策略更新状态</text>
+<text x="582" y="327" class="body" text-anchor="start">clip fraction</text>
+<text x="582" y="354" class="body" text-anchor="start">entropy</text>
+<text x="582" y="381" class="body" text-anchor="start">更新幅度与探索程度</text>
+<path d="M420,204 L420,231 L688,231 L688,266" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="421" width="784" height="74" rx="10" fill="#fff5e3"/>
+<text x="44" y="449" class="sub" text-anchor="start">把 reward、长度、退化组比例与策略指标放在同一实验时间轴上。</text>
+<text x="44" y="474" class="sub" text-anchor="start">再结合任务评测判断：得分改善是否对应能力改善。</text>
+</svg>

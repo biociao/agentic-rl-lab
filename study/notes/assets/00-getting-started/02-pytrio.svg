@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="642" viewBox="0 0 840 642" role="img" aria-labelledby="title desc">
+<title id="title">PyTRIO：两条 loss 执行路径</title><desc id="desc">参数反向传播与优化器更新始终由服务端完成。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="642" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="640" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">PyTRIO：两条 loss 执行路径</text>
+<text x="48" y="81" class="sub" text-anchor="start">参数反向传播与优化器更新始终由服务端完成。</text>
+<rect x="28" y="118" width="340" height="126" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="149" class="head" text-anchor="start">本地 · 组织 Datum</text>
+<text x="46" y="179" class="body" text-anchor="start">model_input：输入 token</text>
+<text x="46" y="206" class="body" text-anchor="start">loss_fn_inputs：目标与权重</text>
+<rect x="464" y="118" width="348" height="126" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="482" y="149" class="head" text-anchor="start">云端 · 模型前向</text>
+<text x="482" y="179" class="body" text-anchor="start">模型权重 → 逐 token logprob</text>
+<text x="482" y="206" class="body" text-anchor="start">内置 loss 也在云端计算</text>
+<path d="M368,181 L464,181" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="416" y="164" class="small" text-anchor="middle">提交样本</text>
+<rect x="28" y="302" width="340" height="126" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="333" class="head" text-anchor="start">本地 · 自定义 loss</text>
+<text x="46" y="363" class="body" text-anchor="start">CPU torch：logprob → 标量 L</text>
+<text x="46" y="390" class="body" text-anchor="start">求 ∂L/∂logprob</text>
+<rect x="464" y="302" width="348" height="126" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="482" y="333" class="head" text-anchor="start">云端 · 参数反向传播</text>
+<text x="482" y="363" class="body" text-anchor="start">内置 loss：直接得到梯度</text>
+<text x="482" y="390" class="body" text-anchor="start">自定义：接收 logprob 的梯度</text>
+<path d="M464,229 L416,229 L416,275 L198,275 L198,302" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="196" y="269" class="small" text-anchor="middle">自定义路径：取回 logprob</text>
+<path d="M368,365 L464,365" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="416" y="350" class="small" text-anchor="middle">回传梯度</text>
+<path d="M700,244 L700,302" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="750" y="278" class="small" text-anchor="middle">内置路径</text>
+<rect x="464" y="474" width="348" height="126" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="482" y="505" class="head" text-anchor="start">optim_step → 更新 LoRA</text>
+<text x="482" y="535" class="body" text-anchor="start">save_weights_for_sampler</text>
+<text x="482" y="562" class="body" text-anchor="start">trio:// 快照 → sampler</text>
+<path d="M638,428 L638,474" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="474" width="340" height="126" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="505" class="head" text-anchor="start">为什么 CPU 就够？</text>
+<text x="46" y="535" class="body" text-anchor="start">本地只求小图的梯度</text>
+<text x="46" y="562" class="body" text-anchor="start">大模型权重的计算在云端</text>
+</svg>

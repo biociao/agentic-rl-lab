@@ -11,7 +11,7 @@
  * 产物：<dest>/YYYY-MM-DD-<slug>.md，frontmatter 带 permalink → /agentic-rl/<slug>/
  */
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import { copyFileSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, basename, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -39,6 +39,9 @@ if (!dest) {
   process.exit(1)
 }
 const DEST = resolve(process.cwd(), dest)
+// DEST is source/_posts/agentic-rl; images live under source/images/agentic-rl.
+const ASSET_DEST = resolve(DEST, '..', '..', 'images', URL_ROOT)
+const assets = new Map()
 
 // ---------- 工具 ----------
 const gitDate = (file) => {
@@ -80,6 +83,18 @@ const rewriteLinks = (body) =>
     .replace(/\[([^\]]+)\]\((?:\.\.\/)+(experiments[^)]*)\)/g, (_, text, p) =>
       `[${text}](https://github.com/datawhalechina/agentic-rl-lab/blob/main/${p.replace(/\.md$/, '')})`,
     )
+
+/** Relative note images → Hexo's shared image directory; collect only referenced files. */
+const rewriteImages = (body) => body.replace(
+  /!\[([^\]]*)\]\(\.\/assets\/([a-z0-9_/-]+\.(?:svg|png|jpe?g|webp))\)/gi,
+  (_, alt, asset) => {
+    const source = join(NOTES_DIR, 'assets', asset)
+    // Validate the source in dry-run mode as well as during a real export.
+    readFileSync(source)
+    assets.set(asset, source)
+    return `![${alt}](/images/${URL_ROOT}/${asset})`
+  },
+)
 
 /** 去掉正文里的首个 H1（标题已进 frontmatter），避免页内重复 */
 const stripFirstH1 = (body) => body.replace(/^#\s+.+\n+/, '')
@@ -134,7 +149,7 @@ for (const file of files) {
 
   const tags = [...DEFAULT_TAGS, isIndex ? 'Roadmap' : 'Notes']
 
-  const body = rewriteLinks(stripFirstH1(body0)).trim() + '\n\n' + sourceNote(file)
+  const body = rewriteImages(rewriteLinks(stripFirstH1(body0))).trim() + '\n\n' + sourceNote(file)
 
   const fm = [
     '---',
@@ -159,6 +174,14 @@ for (const file of files) {
 
 console.log(`${dryRun ? '[dry-run] ' : ''}同步 ${manifest.length} 篇 → ${DEST}`)
 for (const m of manifest) console.log(`  ${m.file} → ${m.outName}  (${m.permalink})  ${m.title}`)
+for (const [asset, source] of assets) {
+  const target = join(ASSET_DEST, asset)
+  if (!dryRun) {
+    mkdirSync(dirname(target), { recursive: true })
+    copyFileSync(source, target)
+  }
+}
+if (assets.size) console.log(`${dryRun ? '[dry-run] ' : ''}同步 ${assets.size} 张图片 → ${ASSET_DEST}`)
 if (!dryRun) {
   console.log('\n下一步：')
   console.log('  cd <hexo-blog> && npm run build && npx hexo server   # 本地预览')

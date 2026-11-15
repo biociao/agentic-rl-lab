@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="620" viewBox="0 0 840 620" role="img" aria-labelledby="title desc">
+<title id="title">蒸馏：谁生成轨迹，谁提供反馈？</title><desc id="desc">OPD 的关键是学生自己采样；老师对这些 token 评分，无须重新生成。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="620" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="618" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">蒸馏：谁生成轨迹，谁提供反馈？</text>
+<text x="48" y="81" class="sub" text-anchor="start">OPD 的关键是学生自己采样；老师对这些 token 评分，无须重新生成。</text>
+<rect x="28" y="118" width="244" height="223" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="46" y="149" class="head" text-anchor="start">传统离线蒸馏</text>
+<text x="46" y="179" class="body" text-anchor="start">老师 / 固定数据</text>
+<text x="46" y="206" class="body" text-anchor="start">↓</text>
+<text x="46" y="233" class="body" text-anchor="start">示范答案</text>
+<text x="46" y="260" class="body" text-anchor="start">↓</text>
+<text x="46" y="287" class="body" text-anchor="start">学生拟合示范</text>
+<rect x="298" y="118" width="244" height="223" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="316" y="149" class="head" text-anchor="start">OPD</text>
+<text x="316" y="179" class="body" text-anchor="start">学生自己生成回答</text>
+<text x="316" y="206" class="body" text-anchor="start">↓</text>
+<text x="316" y="233" class="body" text-anchor="start">老师对这些 token 评分</text>
+<text x="316" y="260" class="body" text-anchor="start">↓</text>
+<text x="316" y="287" class="body" text-anchor="start">学生与老师的分布对比</text>
+<rect x="568" y="118" width="244" height="223" rx="12" fill="#f4effa" stroke="#7550a5" stroke-width="1.5"/>
+<text x="586" y="149" class="head" text-anchor="start">OPSD</text>
+<text x="586" y="179" class="body" text-anchor="start">学生自己生成回答</text>
+<text x="586" y="206" class="body" text-anchor="start">↓</text>
+<text x="586" y="233" class="body" text-anchor="start">冻结的 step 0 自己</text>
+<text x="586" y="260" class="body" text-anchor="start">额外看到参考答案</text>
+<text x="586" y="287" class="body" text-anchor="start">↓ 给学生轨迹反馈</text>
+<rect x="28" y="395" width="372" height="112" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="46" y="426" class="head" text-anchor="start">Forward KL · 直觉</text>
+<text x="46" y="456" class="body" text-anchor="start">KL(老师 ‖ 学生)</text>
+<text x="46" y="483" class="body" text-anchor="start">倾向覆盖老师有概率的模式</text>
+<rect x="440" y="395" width="372" height="112" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="458" y="426" class="head" text-anchor="start">Reverse KL · 直觉</text>
+<text x="458" y="456" class="body" text-anchor="start">KL(学生 ‖ 老师)</text>
+<text x="458" y="483" class="body" text-anchor="start">倾向集中在老师认可的模式</text>
+<rect x="28" y="535" width="784" height="49" rx="10" fill="#fff5e3"/>
+<text x="44" y="563" class="sub" text-anchor="start">KL 的直觉描述的是分布偏好；实际生成行为仍受模型容量与训练设置影响。</text>
+</svg>

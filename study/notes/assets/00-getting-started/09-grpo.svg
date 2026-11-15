@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="546" viewBox="0 0 840 546" role="img" aria-labelledby="title desc">
+<title id="title">GRPO：同题内比较，构造 advantage</title><desc id="desc">示例只演示减均值版本；原版还使用组内标准差归一化。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#486174"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; } .title { font-size: 25px; font-weight: 700; } .sub { font-size: 17px; fill: #486174; } .head { font-size: 20px; font-weight: 650; } .body { font-size: 18px; } .small { font-size: 16px; fill: #486174; }</style>
+<rect width="840" height="546" rx="16" fill="#fff"/>
+<rect x="1" y="1" width="838" height="544" rx="16" fill="none" stroke="#d8e3ed"/>
+<rect x="28" y="28" width="5" height="56" rx="2" fill="#087e8b"/>
+<text x="48" y="53" class="title" text-anchor="start">GRPO：同题内比较，构造 advantage</text>
+<text x="48" y="81" class="sub" text-anchor="start">示例只演示减均值版本；原版还使用组内标准差归一化。</text>
+<rect x="28" y="117" width="784" height="85" rx="12" fill="#e9f7f8" stroke="#087e8b" stroke-width="1.5"/>
+<text x="46" y="148" class="head" text-anchor="start">同一道题 → 采样 K = 4 条回答</text>
+<text x="46" y="178" class="body" text-anchor="start">r = [1, 1, 0, 0]      组内均值 = 0.5</text>
+<path d="M214,202 L214,242" fill="none" stroke="#486174" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="28" y="242" width="372" height="142" rx="12" fill="#edf4fc" stroke="#2265a5" stroke-width="1.5"/>
+<text x="46" y="273" class="head" text-anchor="start">有差异的组</text>
+<text x="46" y="303" class="body" text-anchor="start">A = r − mean(r)</text>
+<text x="46" y="330" class="body" text-anchor="start">A = [+0.5, +0.5, −0.5, −0.5]</text>
+<text x="46" y="357" class="body" text-anchor="start">相对更好的回答被鼓励</text>
+<rect x="440" y="242" width="372" height="142" rx="12" fill="#fff5e3" stroke="#99600c" stroke-width="1.5"/>
+<text x="458" y="273" class="head" text-anchor="start">退化组 · 所有 reward 相同</text>
+<text x="458" y="303" class="body" text-anchor="start">[1, 1, 1, 1] 或 [0, 0, 0, 0]</text>
+<text x="458" y="330" class="body" text-anchor="start">减均值后 A = [0, 0, 0, 0]</text>
+<text x="458" y="357" class="body" text-anchor="start">组内相对奖励没有学习信号</text>
+<rect x="28" y="415" width="784" height="99" rx="10" fill="#e9f7f8"/>
+<text x="44" y="443" class="sub" text-anchor="start">不另训 critic → 用组内奖励统计构造 baseline。</text>
+<text x="44" y="468" class="sub" text-anchor="start">代价转向数据：题目太易或太难 → 退化组增多 → 有效信号减少。</text>
+<text x="44" y="493" class="sub" text-anchor="start">原版归一化需处理 std = 0；DAPO 用动态采样过滤并补齐有效组。</text>
+</svg>
