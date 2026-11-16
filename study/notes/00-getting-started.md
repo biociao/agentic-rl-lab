@@ -6,7 +6,7 @@
 >
 > **我的笔记**：源码 [biociao/agentic-rl-lab · study 分支](https://github.com/biociao/agentic-rl-lab/blob/study/study/notes/00-getting-started.md) ·
 > 在线阅读 [biociao.github.io](https://biociao.github.io/agentic-rl-lab/notes/00-getting-started) ·
-> 博客镜像 [biochao.cc](https://biochao.cc/agentic-rl/00-getting-started/)
+> 博客镜像 [biochao.cc](https://biochao.cc/agentic-rl/00-getting-started/)  
 >更新：2026-11-16 · 对应 Datawhale 组队学习 Task01 · 引用与版权说明见文末 §7。
 
 本节是课程的准备环节，为了便于上手实践，它采用了一种**训练范式的迁移**，即：
