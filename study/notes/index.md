@@ -1,9 +1,15 @@
 # 学习路线与进度
 
-这里记录我对 [datawhalechina/agentic-rl-lab](https://github.com/datawhalechina/agentic-rl-lab) 的学习进度。
+这里记录我对 [datawhalechina/agentic-rl-lab](https://datawhalechina.github.io/agentic-rl-lab/) 的学习进度。
 **已读**的章节链到本地笔记，**未读**的链到上游原文——点开就能对照着看。
 
-> 笔记写在仓库 `study` 分支的 `study/notes/` 目录，只推送到我的 fork用于公开阅读
+> **课程资料**：[Agentic RL Lab](https://datawhalechina.github.io/agentic-rl-lab/)（Datawhale，Apache-2.0）·
+> [源码仓库](https://github.com/datawhalechina/agentic-rl-lab)
+>
+> **我的笔记**：源码 [biociao/agentic-rl-lab · study 分支](https://github.com/biociao/agentic-rl-lab/tree/study/study/notes) ·
+> 在线阅读 [biociao.github.io/agentic-rl-lab](https://biociao.github.io/agentic-rl-lab/) ·
+> 博客镜像 [biochao.cc · Agentic-RL 专栏](https://biochao.cc/categories/Agentic-RL/) ·
+> 许可证 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)
 
 ## 进度
 

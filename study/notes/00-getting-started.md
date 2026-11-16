@@ -1,8 +1,15 @@
 # 00 · 环境配置与基础概念：一个「没有 GPU」的 RL 训练栈是怎么成立的
 
-> 原文：<https://datawhalechina.github.io/agentic-rl-lab/experiments/getting-started/>
-> 本地：`experiments/getting-started/readme.md` · 更新：2026-11-15 · 对应 Datawhale 组队学习 Task00
->**本笔记将调研这一章用到的平台**、**把概念之间的关系讲清楚**、尝试**标出这套方法的边界**。
+> **课程资料**：[Agentic RL Lab](https://datawhalechina.github.io/agentic-rl-lab/)（Datawhale 开源教程，Apache-2.0）·
+> 本章原文：[Getting Started](https://datawhalechina.github.io/agentic-rl-lab/experiments/getting-started/) ·
+> 源码：`experiments/getting-started/readme.md`
+>
+> **我的笔记**：源码 [biociao/agentic-rl-lab · study 分支](https://github.com/biociao/agentic-rl-lab/blob/study/study/notes/00-getting-started.md) ·
+> 在线阅读 [biociao.github.io](https://biociao.github.io/agentic-rl-lab/notes/00-getting-started) ·
+> 博客镜像 [biochao.cc](https://biochao.cc/agentic-rl/00-getting-started/)
+>
+> **写作范围**：调研本章用到的平台、理清概念之间的关系、标出这套方法的边界；操作步骤不重复（见原文）。
+> 更新：2026-11-16 · 对应 Datawhale 组队学习 Task00 · 引用与版权说明见文末 §7。
 
 本节是课程的准备环节，为了便于上手实践，它采用了一种**训练范式的迁移**，即：
 
@@ -309,3 +316,47 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 - [ ] demo 的 advantage 省掉了除以 std。在 K=4 这么小的组里，除 std 会不会反而放大噪声？（已知 std=0 会退化，这也是原版要加 eps 的原因）
 - [ ] 内置 `cispo` 已有，仓库仍手写一份 custom 版本——是教学演示目的？
 - [ ] GSPO 的「序列级比率」在多轮 Agentic 场景下怎么定义？一个 episode 里含多次工具调用时，序列边界是「一条 completion」还是「整个 episode」？
+
+## 7. 引用与版权说明
+
+本节对应 Datawhale 组队学习的要求：**笔记中引用教程内容或其他资料，需注明出处并附来源链接**。
+以下按「课程资料 / 我的笔记 / 其它参考资料 / 配图」四类分别标注。
+
+### 7.1 课程资料（引用主体）
+
+| 项目 | 内容 |
+| --- | --- |
+| 教程名称 | Agentic RL Lab（首个成体系的 Agentic RL 中文开源教程） |
+| 出品 / 维护 | Datawhale；作者 KMnO4-zx（宋志学）及 Datawhale 团队 |
+| 在线阅读 | <https://datawhalechina.github.io/agentic-rl-lab/> |
+| 源码仓库 | <https://github.com/datawhalechina/agentic-rl-lab> |
+| 本章原文 | <https://datawhalechina.github.io/agentic-rl-lab/experiments/getting-started/>（`experiments/getting-started/readme.md`） |
+| 许可证 | Apache License 2.0（见仓库 [LICENSE](https://github.com/datawhalechina/agentic-rl-lab/blob/main/LICENSE)） |
+
+引用方式说明：本笔记对课程内容以**转述、概括与对照**为主，未整段复制原文；原文的操作步骤（安装、登录、
+命令清单）没有重复收录，需要按步骤操作时请回到原文。若本笔记与原文表述冲突，**以原文为准**。
+
+### 7.2 本笔记
+
+| 项目 | 内容 |
+| --- | --- |
+| 源码 | <https://github.com/biociao/agentic-rl-lab/blob/study/study/notes/00-getting-started.md> |
+| 仓库目录 | <https://github.com/biociao/agentic-rl-lab/tree/study/study/notes> |
+| 在线阅读 | <https://biociao.github.io/agentic-rl-lab/notes/00-getting-started> |
+| 博客镜像 | <https://biochao.cc/agentic-rl/00-getting-started/> |
+| 许可证 | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)（署名—非商业性使用—相同方式共享） |
+
+引用本笔记时，请保留作者署名与上述链接；转载或改编需遵守 CC BY-NC-SA 4.0。
+
+### 7.3 其它参考资料
+
+本文涉及的第三方资料包括 PyTRIO 官方文档、Tinker 官方文档、SwanLab 文档，以及 GRPO、PPO、DAPO、
+CISPO、GSPO、LoRA、GKD、MiniLLM、OPSD 等论文，**逐条链接见文末 §5「索引：这一章牵出的论文与文档」**，
+此处不重复罗列。对这些资料的引用同样是概述与对照，公式、结论与实验条件请以原文与官方文档为准；
+相关名称与成果版权归各原作者与机构所有。
+
+### 7.4 配图
+
+文中 15 张示意图均为本笔记原创，由 [`study/scripts/draw_getting_started.py`](https://github.com/biociao/agentic-rl-lab/blob/study/study/scripts/draw_getting_started.py)
+生成（纯 SVG，未使用第三方素材或截图），随本笔记在 CC BY-NC-SA 4.0 下复用；图中出现的产品名与论文名
+仅用于指代，不代表其官方立场。
