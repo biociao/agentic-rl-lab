@@ -7,9 +7,7 @@
 > **我的笔记**：源码 [biociao/agentic-rl-lab · study 分支](https://github.com/biociao/agentic-rl-lab/blob/study/study/notes/00-getting-started.md) ·
 > 在线阅读 [biociao.github.io](https://biociao.github.io/agentic-rl-lab/notes/00-getting-started) ·
 > 博客镜像 [biochao.cc](https://biochao.cc/agentic-rl/00-getting-started/)
->
-> **写作范围**：调研本章用到的平台、理清概念之间的关系、标出这套方法的边界；操作步骤不重复（见原文）。
-> 更新：2026-11-16 · 对应 Datawhale 组队学习 Task00 · 引用与版权说明见文末 §7。
+>更新：2026-11-16 · 对应 Datawhale 组队学习 Task01 · 引用与版权说明见文末 §7。
 
 本节是课程的准备环节，为了便于上手实践，它采用了一种**训练范式的迁移**，即：
 
@@ -193,13 +191,11 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 
 - PPO 的 `min` 是「保守更新」：一旦某个 token 的 ratio 冲太远，就不再加权。副作用是这个 token彻底不再贡献梯度——CISPO 正是针对这点，把 clip 后的 ratio **detach 成常数**，让梯度继续从`logprob` 流过，只是力度被设定了上限。
 - GSPO 的做法更激进：把序列里每个 token 各自乘一个重要性比率，得到的不是序列级目标的正确估计（长度越长偏差越大）。它改用**长度归一化的序列似然比**，整条序列共享一个比率和一个裁剪区间。Qwen3 的 RL 训练用的是这条路线。
-- DAPO 的四项技术可以逐条对应到 GRPO 的四个痛点：熵坍缩 → Clip-Higher；无效组 → Dynamic Sampling；
-  长序列主导 → token 级 loss；截断噪声 → Overlong Reward Shaping。
+- DAPO 的四项技术可以逐条对应到 GRPO 的四个痛点：熵坍缩 → Clip-Higher；无效组 → Dynamic Sampling；长序列主导 → token 级 loss；截断噪声 → Overlong Reward Shaping。
 
 > 01 章将介绍同一个骨架的四种变形，后面 DAPO/GSPO 会把这类变形推到更极致的位置。
 
-顺便记一个理论进展：有研究表明 GRPO 的策略梯度可以写成 **U-statistic** 的形式，并指出它优化的
-其实是期望奖励的 ℓ₂ 变换而非期望奖励本身（[arXiv:2603.01162](https://arxiv.org/abs/2603.01162)）。这类结论不影响咱跑实验，但可以提醒我们：**「GRPO 是 PPO 的简化」是一种工程化叙事，并不等价于已证实的理论**。
+顺便记一个理论进展：有研究表明 GRPO 的策略梯度可以写成 **U-statistic** 的形式，并指出它优化的其实是期望奖励的 ℓ₂ 变换而非期望奖励本身（[arXiv:2603.01162](https://arxiv.org/abs/2603.01162)）。这类结论不影响咱跑实验，但可以提醒我们：**「GRPO 是 PPO 的简化」是一种工程化叙事，并不等价于已证实的理论**。
 
 ![从 ratio 乘 advantage 出发，区分 PPO 的裁剪目标、CISPO 的梯度路径、GSPO 的序列粒度和 DAPO 的协同改动](./assets/00-getting-started/10-loss-family.svg)
 
@@ -227,14 +223,12 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 
 ### 2.7 Agentic 层：多轮与 observation mask
 
-前面所有讨论都假设「一条回答 = 一个动作序列」。Agentic RL 则把这条链路拉长：
-模型可以在中途调工具（搜索、代码解释器、TextWorld 环境），工具返回的内容成为新的上下文。
+前面所有讨论都假设「一条回答 = 一个动作序列」。Agentic RL 则把这条链路拉长：模型可以在中途调工具（搜索、代码解释器、TextWorld 环境），工具返回的内容成为新的上下文。
 
 这带来两个新问题：
 
 1. **信用分配变难**：一条轨迹可能有几十轮，最终 reward 只有一个。哪一轮该负责？
-2. **谁说的话要进 loss**：observation 是**环境**产生的，不是模型的动作。强化它等于教模型
-   「学会说出环境会说的话」，是纯粹的噪声。
+2. **谁说的话要进 loss**：observation 是**环境**产生的，不是模型的动作。强化它等于教模型「学会说出环境会说的话」，是纯粹的噪声。
 
 工程上的解法就是 **observation mask**：把 observation 区间的 `logprobs` 和 `advantages` 置 0。
 在 PyTRIO 的 `Datum` 里，这件事有一个统一入口——`loss_fn_inputs` 的 `weights`（0/1 掩码）。
@@ -271,8 +265,7 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 - **采样成本**：K 条 × 最大长度，rollout 反而是成本大头，不是梯度；
 - **可复现性**：数据版本、tokenizer、chat template、seed 任一漂移，曲线就不连贯了（就不可比了）。
 
-所以「demo 只跑十几步」不是偷懒，而是**把预算花在算法对照上**：同一批 prompt、同一个模型，
-只改一个变量（loss 名、`group_size`、clip 区间），观察到曲线的变化趋势即可。
+所以「demo 只跑十几步」不是偷懒，而是**把预算花在算法对照上**：同一批 prompt、同一个模型，只改一个变量（loss 名、`group_size`、clip 区间），观察到曲线的变化趋势即可。
 
 ![六步训练循环在本地 CPU 和云端 GPU 之间接力：拼 prompt、采样、评分打包、求梯度、更新权重、记录指标](./assets/00-getting-started/13-training-system.svg)
 
@@ -282,8 +275,7 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 
 - **「不需要 GPU」不等于「没有成本」**。成本只是从「买卡」转移到了「按量计费的采样与训练」，而且多了网络往返这一层新的不确定性。虽然教学 demo 的价格可以忽略，并且对于教学来说这种方式更易于上手。但在做实际任务时不能忽略。
 - **LoRA-only 是有意的取舍**。它让「每步换权重」可行，但也意味着这里的所有结论都建立在「适配器足够表达任务变化」的假设上。想研究全参微调的动态（比如更大规模下的熵行为）的话，还得评估合适的技术栈。
-- **跨平台暂不可比**。官方明确说没有验证过的 Tinker 移植、没有性能对比，所以不能拿这里的
-  step 数 / 效果去和 Tinker 上的结果对齐。
+- **跨平台暂不可比**。官方明确说没有验证过的 Tinker 移植、没有性能对比，所以不能拿这里的step 数 / 效果去和 Tinker 上的结果对齐。
 
 ![远程无本地 GPU、LoRA 训练和同栈算法对照分别对应成本、表达能力与跨平台可比性三项边界](./assets/00-getting-started/14-scope.svg)
 
@@ -333,10 +325,9 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 | 本章原文 | <https://datawhalechina.github.io/agentic-rl-lab/experiments/getting-started/>（`experiments/getting-started/readme.md`） |
 | 许可证 | Apache License 2.0（见仓库 [LICENSE](https://github.com/datawhalechina/agentic-rl-lab/blob/main/LICENSE)） |
 
-引用方式说明：本笔记对课程内容以**转述、概括与对照**为主，未整段复制原文；原文的操作步骤（安装、登录、
-命令清单）没有重复收录，需要按步骤操作时请回到原文。若本笔记与原文表述冲突，**以原文为准**。
+引用方式说明：本笔记对课程内容以**转述、概括与对照**为主，未整段复制；原文的操作步骤（安装、登录、命令清单）没有重复记录，需要按步骤操作时请回到原文。若本笔记与原文表述冲突，**以原文为准**。
 
-### 7.2 本笔记
+### 7.2 本笔记引用说明
 
 | 项目 | 内容 |
 | --- | --- |
@@ -350,13 +341,4 @@ A_i =  r_i − mean(r_1..K)                    # 本仓库 demo 的简化版
 
 ### 7.3 其它参考资料
 
-本文涉及的第三方资料包括 PyTRIO 官方文档、Tinker 官方文档、SwanLab 文档，以及 GRPO、PPO、DAPO、
-CISPO、GSPO、LoRA、GKD、MiniLLM、OPSD 等论文，**逐条链接见文末 §5「索引：这一章牵出的论文与文档」**，
-此处不重复罗列。对这些资料的引用同样是概述与对照，公式、结论与实验条件请以原文与官方文档为准；
-相关名称与成果版权归各原作者与机构所有。
-
-### 7.4 配图
-
-文中 15 张示意图均为本笔记原创，由 [`study/scripts/draw_getting_started.py`](https://github.com/biociao/agentic-rl-lab/blob/study/study/scripts/draw_getting_started.py)
-生成（纯 SVG，未使用第三方素材或截图），随本笔记在 CC BY-NC-SA 4.0 下复用；图中出现的产品名与论文名
-仅用于指代，不代表其官方立场。
+本文涉及的第三方资料包括 PyTRIO 官方文档、Tinker 官方文档、SwanLab 文档，以及 GRPO、PPO、DAPO、CISPO、GSPO、LoRA、GKD、MiniLLM、OPSD 等论文，**逐条链接见文末 §5「索引：这一章牵出的论文与文档」**，此处不重复罗列。对这些资料的引用同样是概述与对照，公式、结论与实验条件请以原文与官方文档为准；相关名称与成果版权归各原作者与机构所有。
