@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="title desc">
+  <title id="title">一次 GRPO 训练怎么走</title>
+  <desc id="desc">当前权重采样，给每个回答打分，做组内比较。有非零信号就更新 LoRA；整批没有信号则跳过更新。下一步用当时的权重重新采样。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#486174"/></marker>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; }
+    .title { font-size: 26px; font-weight: 700; }
+    .head { font-size: 22px; font-weight: 700; }
+    .label { font-size: 18px; fill: #486174; }
+    .arrow { fill: none; stroke: #486174; stroke-width: 2; marker-end: url(#arrow); }
+  </style>
+  <rect x="1" y="1" width="758" height="328" rx="16" fill="#fff" stroke="#d8e3ed" stroke-width="2"/>
+  <rect x="24" y="23" width="5" height="31" rx="2" fill="#087e8b"/>
+  <text x="43" y="47" class="title">一次 GRPO 训练怎么走？</text>
+  <rect x="24" y="78" width="204" height="78" rx="11" fill="#edf4fc" stroke="#b8d1ea"/>
+  <rect x="278" y="78" width="204" height="78" rx="11" fill="#edf4fc" stroke="#b8d1ea"/>
+  <rect x="532" y="78" width="204" height="78" rx="11" fill="#edf4fc" stroke="#b8d1ea"/>
+  <g text-anchor="middle">
+    <text x="126" y="109" class="head">① 采样</text><text x="126" y="138" class="label">用当前权重答几遍</text>
+    <text x="380" y="109" class="head">② 打分</text><text x="380" y="138" class="label">每条回答给 0 或 1</text>
+    <text x="634" y="109" class="head">③ 组内比较</text><text x="634" y="138" class="label">每条减去该题均分</text>
+  </g>
+  <path d="M229 117H274" class="arrow"/><path d="M483 117H528" class="arrow"/>
+  <path d="M634 157V176H198V201" class="arrow"/>
+  <path d="M562 176V201" class="arrow"/>
+  <rect x="28" y="205" width="340" height="64" rx="11" fill="#e9f7f8" stroke="#92c9cd"/>
+  <rect x="392" y="205" width="340" height="64" rx="11" fill="#f3f6f9" stroke="#d8e3ed"/>
+  <g text-anchor="middle">
+    <text x="198" y="245" class="head">至少一题有信号 → 更新 LoRA</text>
+    <text x="562" y="245" class="head">整批无信号 → 跳过更新</text>
+    <text x="380" y="303" class="label">下一步：用当时的权重重新采样</text>
+  </g>
+</svg>

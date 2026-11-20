@@ -1,0 +1,14 @@
+# uv run python experiments/grpo/01-demo-sync.py --steps 10 --batch-size 4 \
+#   --group-size 8 --max-tokens 512 --seed 42 --loss-fn cispo --swanlab-mode disabled
+# 2026-11-20 21:08-21:13 · Qwen/Qwen3.5-4B + LoRA(32) · train cost 308.70s
+# weights: trio://run_n31xkytmkxud/sampler_weights/grpo-sync-qwen35-4b-gsm8k-cispo-steps10
+Step  0 | reward: 1.000 | degenerate: 100% | datums: 0 | train_tokens: 0 | avg_gen_len: 196.2 | loss_mean: n/a
+Step  1 | reward: 0.812 | degenerate: 75% | datums: 8 | train_tokens: 2301 | avg_gen_len: 243.1 | loss_mean: -0.0192
+Step  2 | reward: 0.812 | degenerate: 25% | datums: 24 | train_tokens: 9775 | avg_gen_len: 390.5 | loss_mean: -0.0079
+Step  3 | reward: 0.750 | degenerate: 100% | datums: 0 | train_tokens: 0 | avg_gen_len: 281.8 | loss_mean: n/a
+Step  4 | reward: 0.844 | degenerate: 75% | datums: 8 | train_tokens: 2002 | avg_gen_len: 315.7 | loss_mean: 0.0118
+Step  5 | reward: 0.906 | degenerate: 50% | datums: 16 | train_tokens: 5398 | avg_gen_len: 274.1 | loss_mean: -0.0295
+Step  6 | reward: 0.969 | degenerate: 75% | datums: 8 | train_tokens: 2283 | avg_gen_len: 290.4 | loss_mean: -0.0547
+Step  7 | reward: 0.969 | degenerate: 75% | datums: 8 | train_tokens: 3366 | avg_gen_len: 298.6 | loss_mean: -0.0103
+Step  8 | reward: 0.906 | degenerate: 75% | datums: 8 | train_tokens: 3264 | avg_gen_len: 263.0 | loss_mean: -0.0544
+Step  9 | reward: 0.906 | degenerate: 75% | datums: 8 | train_tokens: 3153 | avg_gen_len: 291.6 | loss_mean: -0.0364

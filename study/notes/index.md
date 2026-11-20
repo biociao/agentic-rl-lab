@@ -17,7 +17,7 @@
 | --- | --- | --- | --- |
 | 00 | 环境配置与基础概念 | [笔记](./00-getting-started.md) · [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/getting-started/) | ✅ 已读 |
 | 01 | Loss Functions | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/loss-functions/) | ⏳ 待读（读 GRPO 前必读） |
-| 02 | GRPO | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/grpo/) | ⏳ |
+| 02 | GRPO | [笔记](./02-grpo.md) · [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/grpo/) | ✅ 已读 |
 | 03 | Vision GRPO | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/vision-grpo/) | ⏳ |
 | 04 | PyTrio-Jev | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/pytrio-jev/) | ⏳ |
 | 05 | General OPD | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/general-opd/) | ⏳ |
@@ -32,4 +32,13 @@
 | 14 | TEMPO | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/tempo/) | ⏳ |
 | 15 | Spec-o3 | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/spec-o3/) | ⏳ |
 | 16 | Tournament-GRPO | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/tournament-grpo/) | ⏳ |
+
+## 组队学习任务
+
+章节进度之外，组队学习按「任务」发作业，任务与章节大体一一对应：
+
+| 任务 | 内容 | 笔记 | 状态 |
+| --- | --- | --- | --- |
+| Task01 | 环境配置与基础概念（装环境 + 概念表） | [00 章](./00-getting-started.md) | ✅ 已读 |
+| Task02 | GRPO：在 GSM8K 上走通采样、奖励与更新，再比较三种损失的训练行为 | [02 章](./02-grpo.md) | ✅ 已读（含三组实测） |
 

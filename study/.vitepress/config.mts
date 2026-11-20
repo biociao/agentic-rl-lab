@@ -61,7 +61,7 @@ export default defineConfig({
           items: [
             { text: '00 环境配置与基础概念', link: '/notes/00-getting-started' },
             { text: '01 Loss Functions', link: `${UPSTREAM_SITE}/experiments/loss-functions/` },
-            { text: '02 GRPO', link: `${UPSTREAM_SITE}/experiments/grpo/` },
+            { text: '02 GRPO', link: '/notes/02-grpo' },
             { text: '03 Vision GRPO', link: `${UPSTREAM_SITE}/experiments/vision-grpo/` },
             { text: '04 PyTrio-Jev', link: `${UPSTREAM_SITE}/experiments/pytrio-jev/` },
             { text: '05 General OPD', link: `${UPSTREAM_SITE}/experiments/general-opd/` },
