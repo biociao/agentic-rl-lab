@@ -18,7 +18,7 @@
 | 00 | 环境配置与基础概念 | [笔记](./00-getting-started.md) · [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/getting-started/) | ✅ 已读 |
 | 01 | Loss Functions | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/loss-functions/) | ⏳ 待读（读 GRPO 前必读） |
 | 02 | GRPO | [笔记](./02-grpo.md) · [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/grpo/) | ✅ 已读 |
-| 03 | Vision GRPO | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/vision-grpo/) | ⏳ |
+| 03 | Vision GRPO | [笔记](./03-vision-grpo.md) · [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/vision-grpo/) | ✅ 已读 |
 | 04 | PyTrio-Jev | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/pytrio-jev/) | ⏳ |
 | 05 | General OPD | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/general-opd/) | ⏳ |
 | 06 | Medical OPD | [原文](https://datawhalechina.github.io/agentic-rl-lab/experiments/medical-opd/) | ⏳ |
@@ -41,4 +41,5 @@
 | --- | --- | --- | --- |
 | Task01 | 环境配置与基础概念（装环境 + 概念表） | [00 章](./00-getting-started.md) | ✅ 已读 |
 | Task02 | GRPO：在 GSM8K 上走通采样、奖励与更新，再比较三种损失的训练行为 | [02 章](./02-grpo.md) | ✅ 已读（含三组实测） |
+| Task03 | Vision GRPO：图文 prompt 拼装、组内 rollout、boxed 规则奖励与 +16pp 拆账 | [03 章](./03-vision-grpo.md) | ✅ 已读（含本地验证） |
 

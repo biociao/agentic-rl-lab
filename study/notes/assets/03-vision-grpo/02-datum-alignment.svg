@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="412" viewBox="0 0 760 412" role="img" aria-labelledby="title desc">
+  <title id="title">同一根 token 轴上，四个数组必须对齐</title>
+  <desc id="desc">model_input 由图文 prompt 与 completion 去掉末位拼成；target_tokens、logprobs、advantages 在 prompt 区间全部填 0，在 completion 区间才填入真实值。observation_length 等于 prompt 长度减一。</desc>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; }
+    .title { font-size: 25px; font-weight: 700; }
+    .head { font-size: 16px; font-weight: 700; }
+    .label { font-size: 15px; fill: #486174; }
+    .tiny { font-size: 13px; fill: #6b7f90; }
+  </style>
+  <rect x="1" y="1" width="758" height="410" rx="16" fill="#fff" stroke="#d8e3ed" stroke-width="2"/>
+  <rect x="24" y="23" width="5" height="31" rx="2" fill="#087e8b"/>
+  <text x="43" y="47" class="title">同一根 token 轴上，四个数组必须对齐</text>
+
+  <rect x="40" y="96" width="569" height="40" fill="#eef3f9" stroke="#b8d1ea"/>
+  <rect x="609" y="96" width="111" height="40" fill="#fdeccb" stroke="#e1c38f"/>
+  <text x="60" y="122" class="label">图文 prompt（含图片）</text>
+  <text x="664" y="122" class="label" text-anchor="middle">completion</text>
+  <text x="40" y="158" class="tiny">model_input = 205 + 40 = 245 tokens（completion 的末位被去掉）</text>
+
+  <path d="M609 88V320" stroke="#d08c2a" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="600" y="88" class="tiny" text-anchor="end" fill="#a8701f">observation_length = prompt − 1 = 205</text>
+
+  <text x="40" y="190" class="head">target_tokens</text>
+  <rect x="40" y="196" width="569" height="28" fill="#f7fafd" stroke="#e3eaf2"/>
+  <rect x="609" y="196" width="111" height="28" fill="#fff" stroke="#e1c38f"/>
+  <text x="320" y="215" class="tiny" text-anchor="middle">全 0 占位 × 205</text>
+  <text x="664" y="215" class="tiny" text-anchor="middle">40 个目标 token</text>
+
+  <text x="40" y="238" class="head">logprobs</text>
+  <rect x="40" y="244" width="569" height="28" fill="#f7fafd" stroke="#e3eaf2"/>
+  <rect x="609" y="244" width="111" height="28" fill="#fff" stroke="#e1c38f"/>
+  <text x="320" y="263" class="tiny" text-anchor="middle">全 0.0 占位 × 205</text>
+  <text x="664" y="263" class="tiny" text-anchor="middle">采样时的 logprob</text>
+
+  <text x="40" y="286" class="head">advantages</text>
+  <rect x="40" y="292" width="569" height="28" fill="#f7fafd" stroke="#e3eaf2"/>
+  <rect x="609" y="292" width="111" height="28" fill="#fff" stroke="#e1c38f"/>
+  <text x="320" y="311" class="tiny" text-anchor="middle">全 0.0 占位 × 205</text>
+  <text x="664" y="311" class="tiny" text-anchor="middle">同一条 advantage</text>
+
+  <text x="40" y="352" class="label">prompt 与图片只提供上下文；策略梯度只落在 completion 的 40 个 token 上。</text>
+  <text x="40" y="380" class="tiny">位置差一个：第 t 个位置的 token 预测第 t+1 个 token，所以 completion 末位不放进 model_input。</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="492" viewBox="0 0 760 492" role="img" aria-labelledby="title desc">
+  <title id="title">一张几何图先变成 70 个 token</title>
+  <desc id="desc">GeoQA 样本经 chat template 渲染成一个字符串，图片处留 &lt;|image_pad|&gt; 占位；再沿占位符切成文本、图片、文本三个 chunk。图片用 patch 数声明自己要占多少视觉 token，本地据此算出 prompt 总长，远端返回后校验。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#486174"/></marker>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; }
+    .title { font-size: 25px; font-weight: 700; }
+    .head { font-size: 18px; font-weight: 700; }
+    .label { font-size: 14px; fill: #486174; }
+    .tiny { font-size: 13px; fill: #6b7f90; }
+    .arrow { fill: none; stroke: #486174; stroke-width: 2; marker-end: url(#arrow); }
+    .bus { fill: none; stroke: #486174; stroke-width: 2; }
+  </style>
+  <rect x="1" y="1" width="758" height="490" rx="16" fill="#fff" stroke="#d8e3ed" stroke-width="2"/>
+  <rect x="24" y="23" width="5" height="31" rx="2" fill="#087e8b"/>
+  <text x="43" y="47" class="title">一张几何图，先变成 70 个 token</text>
+
+  <rect x="24" y="78" width="250" height="176" rx="11" fill="#edf4fc" stroke="#b8d1ea"/>
+  <text x="44" y="108" class="head">GeoQA 样本</text>
+  <text x="44" y="130" class="tiny">test 集 id=8121</text>
+  <rect x="44" y="144" width="72" height="56" rx="6" fill="#dbe9f6" stroke="#9cc0dd"/>
+  <path d="M56 186L78 160L96 178L104 170" fill="none" stroke="#5b86ab" stroke-width="1.6"/>
+  <circle cx="100" cy="156" r="4" fill="#5b86ab"/>
+  <text x="128" y="158" class="label">如图,AB 是直径,</text>
+  <text x="128" y="180" class="label">CD⊥AB,∠COB=60°,</text>
+  <text x="128" y="202" class="label">则 ∠DAB 的度数为</text>
+  <text x="44" y="232" class="tiny">A 60° · B 30° · C 25° · D 35°</text>
+
+  <rect x="296" y="84" width="440" height="130" rx="11" fill="#f7fafd" stroke="#d8e3ed"/>
+  <text x="316" y="112" class="head">chat template 渲染成一个字符串</text>
+  <text x="316" y="140" class="label">enable_thinking=False：关掉思考模式</text>
+  <text x="316" y="166" class="label">图片位置只放一个 &lt;|image_pad|&gt; 占位符</text>
+  <text x="316" y="192" class="label">按占位符 split，图片字节落在中间 chunk</text>
+
+  <path d="M516 214V266" class="bus"/>
+  <path d="M118 266H642" class="bus"/>
+  <path d="M118 266V282" class="arrow"/>
+  <path d="M380 266V282" class="arrow"/>
+  <path d="M642 266V282" class="arrow"/>
+
+  <rect x="24" y="286" width="188" height="88" rx="11" fill="#edf4fc" stroke="#b8d1ea"/>
+  <rect x="232" y="286" width="296" height="88" rx="11" fill="#fff5e3" stroke="#e1c38f"/>
+  <rect x="548" y="286" width="188" height="88" rx="11" fill="#e9f7f8" stroke="#92c9cd"/>
+  <g text-anchor="middle">
+    <text x="118" y="320" class="head">文本 chunk ①</text>
+    <text x="118" y="346" class="label">126 tokens</text>
+    <text x="380" y="320" class="head">图片 chunk</text>
+    <text x="380" y="346" class="label">70 个视觉 token</text>
+    <text x="642" y="320" class="head">文本 chunk ②</text>
+    <text x="642" y="346" class="label">10 tokens</text>
+  </g>
+  <text x="380" y="364" class="tiny" text-anchor="middle">280 patch ÷ 4（2×2 合并）= 70</text>
+  <text x="642" y="364" class="tiny" text-anchor="middle">空的 think 块</text>
+
+  <rect x="24" y="394" width="712" height="74" rx="11" fill="#fff5e3" stroke="#e1c38f"/>
+  <text x="44" y="426" class="head">账本：126 + 70 + 10 = 206 tokens，图片占 34%</text>
+  <text x="44" y="452" class="label">远端采样返回后，训练脚本用 input_tokens == 206 校验；对不上就立即报错。</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="356" viewBox="0 0 760 356" role="img" aria-labelledby="title desc">
+  <title id="title">16 个百分点里，15.2 来自格式，0.8 来自能力</title>
+  <desc id="desc">把 87% 拆成 Base 的 71% 加上格式率提升带来的 15.2 个百分点，再加上条件准确率提升带来的 0.8 个百分点。格式率决定准确率上限，因此涨点主要来自学会输出可解析的 boxed 选项。</desc>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #17334a; }
+    .title { font-size: 25px; font-weight: 700; }
+    .head { font-size: 17px; font-weight: 700; }
+    .label { font-size: 15px; fill: #486174; }
+    .tiny { font-size: 13px; fill: #6b7f90; }
+  </style>
+  <rect x="1" y="1" width="758" height="354" rx="16" fill="#fff" stroke="#d8e3ed" stroke-width="2"/>
+  <rect x="24" y="23" width="5" height="31" rx="2" fill="#087e8b"/>
+  <text x="43" y="47" class="title">16 个百分点：15.2 来自格式，0.8 来自能力</text>
+
+  <text x="646" y="82" class="head" text-anchor="middle" fill="#0b6f79">+15.2pp</text>
+  <text x="646" y="100" class="tiny" text-anchor="middle">格式率 75% → 91%</text>
+  <text x="740" y="66" class="tiny" text-anchor="end" fill="#a8701f">+0.8pp</text>
+  <path d="M726 72L718 106" stroke="#c9a25a" stroke-width="1.2" fill="none"/>
+
+  <rect x="40" y="110" width="555" height="64" fill="#dbe3ee" stroke="#8fa0b3"/>
+  <rect x="595" y="110" width="119" height="64" fill="#8fcdd2" stroke="#0b6f79"/>
+  <rect x="714" y="110" width="6" height="64" fill="#f0b429" stroke="#a8701f"/>
+  <text x="317" y="150" class="head" text-anchor="middle" font-size="21">71.0%</text>
+  <text x="654" y="150" class="tiny" text-anchor="middle" fill="#0b3f44">+15.2</text>
+
+  <text x="40" y="204" class="label">Base：准确 71.0% · 格式 75.0%</text>
+  <text x="720" y="204" class="label" text-anchor="end">step 100：准确 87.0% · 格式 91.0%</text>
+
+  <rect x="40" y="226" width="680" height="104" rx="11" fill="#f7fafd" stroke="#d8e3ed"/>
+  <text x="60" y="254" class="label">· 格式率就是准确率的上限：Base 只有 75%，不做格式改进，准确率到不了 87%。</text>
+  <text x="60" y="282" class="label">· 新变得可解析的 16 条回答全部答对；原先答对的 71 条一条没丢。</text>
+  <text x="60" y="310" class="label">· 条件准确率只从 94.7% 升到 95.6%：几何能力几乎没动，涨的是「把答案写成对的格式」。</text>
+</svg>
